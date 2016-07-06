@@ -1,5 +1,7 @@
 package sk.badand.ersystem.controller;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sk.badand.ersystem.domain.ProjectRepository;
 
@@ -17,4 +19,5 @@ public final class ProjectController {
     public ProjectController(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
+
 }
