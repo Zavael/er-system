@@ -9,10 +9,10 @@ angular.module('hello', [ 'ngRoute' ])
         }).when('/projects', {
             templateUrl:'projects.html',
             controller:'projects'
-        }).when('/profile', {
-            templateUrl:'profile.html',
-            controller:'profile'
-        }).when('/reviews', {
+        }).when('/user', {
+            templateUrl:'user.html',
+            controller:'user'
+        }).when('/user/reviews', {
             templateUrl:'reviews.html',
             controller:'reviews'
         }).otherwise('/');
@@ -20,4 +20,6 @@ angular.module('hello', [ 'ngRoute' ])
         $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';
     })
     .controller('home', function() {})
+    .controller('profile', function() {})
+    .controller('reviews', function() {})
     .controller('navigation', function(){});
