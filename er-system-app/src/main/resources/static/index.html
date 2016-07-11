@@ -29,7 +29,7 @@
             <li><a href="#/user">me</a></li>
             <li><a href="#/user/reviews">my reviews</a></li>
             <li><a href="#/login">login</a></li>
-            <li ng-show="authenticated">logout</li>
+            <li ng-show="authenticated"><a href="" ng-click="logout()">logout</a></li>
         </ul>
     </div>
     <div ng-view class="container">
