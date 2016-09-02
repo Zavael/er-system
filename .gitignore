@@ -9,4 +9,4 @@
 /er-system-frontend/dist
 /er-system-frontend/node_modules
 /er-system-frontend/.DS_Store
-/er-system-frontend/npm-debug.log
+/er-system-frontend/npm-debug.log*
