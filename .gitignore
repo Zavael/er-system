@@ -1,6 +1,8 @@
 # java spring backend
 /er-system-backend/.idea
 /er-system-backend/target
+/er-system-backend/.mvn
+/er-system-backend/er-system-backend.iml
 
 # angular 2 frontend
 /er-system-frontend/typings
