@@ -1,18 +1,17 @@
 // - Routes instead of RouteConfig
 // - RouterModule instead of provideRoutes
 import { Routes, RouterModule } from '@angular/router';
-import { PersonListComponent, ProjectListComponent } from './components';
+import { PersonListComponent, ProjectListComponent, LoginComponent, PageNotFoundComponent } from './components';
 
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: '/projects',
+		redirectTo: '',
 		pathMatch: 'full'
 	},
-	{
-		path: 'projects',
-		component: ProjectListComponent
-	}
+	{ path: 'projects', component: ProjectListComponent },
+	{ path: 'login', component: LoginComponent },
+	{ path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
 // - Updated Export

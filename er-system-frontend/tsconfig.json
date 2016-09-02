@@ -9,5 +9,8 @@
     "removeComments": false,
     "noImplicitAny": false,
     "outDir": "dist"
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
