@@ -1,2 +1,10 @@
-er-system-app/.idea
-er-system-app/target/
+# java spring backend
+/er-system-backend/.idea
+/er-system-backend/target
+
+# angular 2 frontend
+/er-system-frontend/typings
+/er-system-frontend/dist
+/er-system-frontend/node_modules
+/er-system-frontend/.DS_Store
+/er-system-frontend/npm-debug.log
