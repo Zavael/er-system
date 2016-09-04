@@ -6,7 +6,7 @@ import { PersonListComponent, ProjectListComponent, LoginComponent, PageNotFound
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: '',
+		redirectTo: 'login',
 		pathMatch: 'full'
 	},
 	{ path: 'projects', component: ProjectListComponent },

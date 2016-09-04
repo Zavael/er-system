@@ -1,23 +1,20 @@
-<div class="ui inverted fixed menu">
-    <div class="ui secondary pointing menu">
-        <a routerLink="/home" class="item">
-            <img src="resources/static/pic/logo.png" alt="" />
+<div class="ui main inverted menu">
+	<div class="ui container">
+		<a routerLink="/home" class="item">
+			<img src="images/logo.png" alt="" />
+		</a>
+		<a routerLink="/projects" class="item">
+            Projects
         </a>
-        <a routerLink="/home" class="item">
-            <h2>Lagoon</h2>
+		<a *ngIf="loginService.checkLogin()" routerLink="/profile" class="item">
+            Profile
         </a>
-        <a routerLink="/home" class="item">
-            Home
-        </a>
-        <a *ngIf="loginService.checkLogin()" routerLink="/my-album" class="item">
-            My Album
-        </a>
-    </div>
-    <div class="right menu">
-        <a *ngIf="!loginService.checkLogin()" routerLink="/register" class="item">Register</a>
-        <strong class="item">{{loginService.getUserName()}}</strong>
-        <a routerLink="/login" (click)="onClick()" class="item">
+	</div>
+	<div class="right menu">
+		<a *ngIf="!loginService.checkLogin()" routerLink="/register" class="item">Register</a>
+		<strong *ngIf="loginService.checkLogin()" class="item">{{loginService.getUserName()}}</strong>
+		<a routerLink="/login" class="item">
             {{loginService.checkLogin() ? 'Logout' : 'Login'}}
         </a>
-    </div>
+	</div>
 </div>
