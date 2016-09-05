@@ -1,7 +1,8 @@
 // - Routes instead of RouteConfig
 // - RouterModule instead of provideRoutes
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PersonListComponent, ProjectListComponent, LoginComponent, PageNotFoundComponent } from './components';
+import { PersonListComponent, ProjectListComponent, LoginComponent, RegisterComponent, HomeComponent, PageNotFoundComponent } from './components';
 
 const routes: Routes = [
 	{
@@ -9,10 +10,25 @@ const routes: Routes = [
 		redirectTo: 'login',
 		pathMatch: 'full'
 	},
-	{ path: 'projects', component: ProjectListComponent },
+	{
+		path: 'projects',
+		component: ProjectListComponent,
+		children: [
+			{
+				path: ':id',
+				component: PersonListComponent
+			}
+		]
+	},
+	{ path: 'home', component: HomeComponent },
 	{ path: 'login', component: LoginComponent },
+	{ path: 'register', component: RegisterComponent },
 	{ path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
 // - Updated Export
-export const routing = RouterModule.forRoot(routes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+
+export const appRoutingProviders: any[] = [
+	PersonListComponent, ProjectListComponent, LoginComponent, RegisterComponent, HomeComponent, PageNotFoundComponent
+];
