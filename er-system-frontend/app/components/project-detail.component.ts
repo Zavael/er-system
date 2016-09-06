@@ -1,12 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Project } from '../models';
 
 @Component({
-    moduleId: module.id,
     selector: 'project-detail',
-    templateUrl: 'project-detail.component.html'
+    templateUrl: 'app/components/project-detail.component.html'
 })
 export class ProjectDetailComponent implements OnInit {
+    @Input()
+    project: Project;
+    @Output() onBack = new EventEmitter();
+
     constructor() { }
 
     ngOnInit() { }
+
+    goBack(){
+        this.onBack.emit();
+    }
 }

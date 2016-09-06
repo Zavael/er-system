@@ -1,8 +1,12 @@
+import { Review, User } from '../models';
+
 /**
  * Project
  */
 export class Project {
-    constructor(parameters) {
-        
-    }
+    public name:string;
+    public description:string;
+
+    public projectReviews: Review[];
+    public assignedUsers: User[];
 }

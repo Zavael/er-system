@@ -1,12 +1,15 @@
-<div class="ui relaxed divided list">
-    <div class="item top right attached label">
+<p *ngIf="!projects">
+    Acquiring information...
+</p>
+
+<div *ngIf="projects && !selectedProject" class="ui relaxed divided list">
+    <div *ngFor="let project of projects" class="item top right attached label">
         <i class="huge middle aligned archive icon"></i>
-        <div class="content">
-            <a class="header">
-                <h2>Project header</h2>
+        <div class="content" style="cursor: pointer">
+            <a class="header" (click)="onSelect(project)">
+                <h3>{{project.name}}</h3>
             </a>
-            <div class="description">While we covered how to set up basic routes, access parameters and link to other components, we haven’t really
-                talked about more sophisticated use cases like protecting routes.</div>
+            <div class="description">{{project.description | slice:0:50}}...</div>
             <br />
             <div class="ui blue tag label">
                 <i class="mail icon"></i>
@@ -18,42 +21,8 @@
             </div>
         </div>
     </div>
-    <div class="item top right attached label">
-        <i class="huge middle aligned archive icon"></i>
-        <div class="content">
-            <a class="header">
-                <h2>Project header</h2>
-            </a>
-            <div class="description">While we covered how to set up basic routes, access parameters and link to other components, we haven’t really
-                talked about more sophisticated use cases like protecting routes.</div>
-            <br />
-            <div class="ui blue tag label">
-                <i class="mail icon"></i>
-                <a class="detail">14</a>
-            </div>
-            <div class="ui red tag label">
-                <i class="user icon"></i>
-                <a class="detail">6</a>
-            </div>
-        </div>
-    </div>
-    <div class="item top right attached label">
-        <i class="huge middle aligned archive icon"></i>
-        <div class="content">
-            <a class="header">
-                <h2>Project header</h2>
-            </a>
-            <div class="description">While we covered how to set up basic routes, access parameters and link to other components, we haven’t really
-                talked about more sophisticated use cases like protecting routes.</div>
-            <br />
-            <div class="ui blue tag label">
-                <i class="mail icon"></i>
-                <a class="detail">14</a>
-            </div>
-            <div class="ui red tag label">
-                <i class="user icon"></i>
-                <a class="detail">6</a>
-            </div>
-        </div>
-    </div>
+</div>
+
+<div *ngIf="selectedProject">
+    <project-detail [project]="selectedProject" (onBack)="onBackEvent()"></project-detail>
 </div>

@@ -1,0 +1,11 @@
+<div class="ui grid">
+	<div class="six wide column">
+		<i class="huge middle aligned archive icon"></i>
+	</div>
+	<div class="six wide column">
+		<h2>{{project.name | uppercase}}</h2>
+	</div>
+	<div>{{project.description}}</div>
+	<reviews></reviews>
+	<button class="ui button" (click)="goBack()">Back</button>
+</div>
