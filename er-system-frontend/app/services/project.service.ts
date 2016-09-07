@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { HeadersService } from '../services';
-import { Project, designation, paragraph } from '../models';
+import { Project, User, Review, designation, paragraph } from '../models';
 import {Observable} from 'rxjs/Rx';
 
 @Injectable()
@@ -26,7 +26,21 @@ export class ProjectService {
 			let project = new Project();
 			project.name = designation();
 			project.description = paragraph(50);
-			
+			project.assignedUsers = [];
+			for (var i = 0; i < Math.floor(Math.random() * 15); i++) {
+				let user = new User();
+				user.userName = designation();
+				user.password = '';
+				user.position = i < 1 ? 'Project Manager' : i < 3 ? 'Senior Developer' : 'Junior Developer';
+				project.assignedUsers.push(user);
+			}
+			project.projectReviews = [];
+			for (var i = 0; i < Math.floor(Math.random() * 10); i++) {
+				let review = new Review();
+				review.userName = designation();
+				review.content = paragraph(50);
+				project.projectReviews.push(review);
+			}
 			projects.push(project);
 		}
 		return projects;

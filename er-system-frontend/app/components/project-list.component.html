@@ -12,12 +12,12 @@
             <div class="description">{{project.description | slice:0:50}}...</div>
             <br />
             <div class="ui blue tag label">
-                <i class="mail icon"></i>
-                <a class="detail">{{project.projectReviews ? project.assignedUsers.size : 0}}</a>
+                <i class="comments icon"></i>
+                <a class="detail">{{project.projectReviews ? project.projectReviews.length : 0}}</a>
             </div>
             <div class="ui red tag label">
-                <i class="user icon"></i>
-                <a class="detail">{{project.assignedUsers ? project.assignedUsers.size : 0}}</a>
+                <i class="users icon"></i>
+                <a class="detail">{{project.assignedUsers ? project.assignedUsers.length : 0}}</a>
             </div>
         </div>
     </div>

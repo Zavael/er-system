@@ -1,46 +1,41 @@
 <div class="ui grid">
-	<div class="two wide column">
-		<i class="huge middle aligned archive icon"></i>
-	</div>
-	<div class="fourteen wide column">
-		<h2>{{project.name | uppercase}}</h2>
-
-		<div class="ui blue tag label">
-			<i class="mail icon"></i>
-			<a class="detail">{{project.projectReviews ? project.assignedUsers.size : 0}}</a>
-		</div>
-		<div class="ui red tag label">
-			<i class="user icon"></i>
-			<a class="detail">{{project.assignedUsers ? project.assignedUsers.size : 0}}</a>
-		</div>
-	</div>
 	<div class="sixteen wide column">
+		<h2 class="ui header">
+			<i class="archive icon"></i>
+			<div class="content">
+				{{project.name | uppercase}}
+				<div class="sub header">
+					<div class="ui blue tag label">
+						<i class="mail icon"></i>
+						<a class="detail">{{project.projectReviews ? project.assignedUsers.size : 0}}</a>
+					</div>
+					<div class="ui red tag label">
+						<i class="user icon"></i>
+						<a class="detail">{{project.assignedUsers ? project.assignedUsers.size : 0}}</a>
+					</div>
+				</div>
+			</div>
+		</h2>
 		<div class="segment">
 			<div class="ui green segment">
 				<h3 class="ui green header">
 					<i class="small archive icon"></i>
-					<div class="content">
-						Description
-					</div>
+					<div class="content">Description</div>
 				</h3>
 				{{project.description}}
 			</div>
-			<div class="ui red segment">
+			<div class="ui red right aligned segment">
 				<h3 class="ui red header">
-					<i class="small user icon"></i>
-					<div class="content">
-						Project allocations
-					</div>
+					<i class="small users icon"></i>
+					<div class="content">Project allocations</div>
 				</h3>
 				<user-list *ngIf="project.assignedUsers" [users]="project.assignedUsers"></user-list>
 				<p *ngIf="!project.assignedUsers">No assigned users</p>
 			</div>
 			<div class="ui blue segment">
 				<h3 class="ui blue header">
-					<i class="small mail icon"></i>
-					<div class="content">
-						Reviews
-					</div>
+					<i class="small comments icon"></i>
+					<div class="content">Reviews</div>
 				</h3>
 				<reviews *ngIf="project.projectReviews" [reviews]="project.projectReviews"></reviews>
 				<p *ngIf="!project.projectReviews">No reviews yet... be first to add!</p>

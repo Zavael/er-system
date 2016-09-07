@@ -1,1 +1,29 @@
-<p>Reviews...</p>
+<div class="ui comments">
+    <div *ngFor="let review of reviews" class="comment">
+        <i class="large user icon avatar"></i>
+        <div class="content">
+            <a class="author">{{review.username}}</a>
+            <div class="metadata">
+                <div class="date">2 days ago</div>
+            </div>
+            <div class="text">
+                {{review.content}}
+            </div>
+            <div class="actions">
+                <a class="reply">Reply</a>
+                <a class="save">Save</a>
+                <a class="hide">Hide</a>
+            </div>
+        </div>
+    </div>
+
+
+    <form class="ui reply form">
+        <div class="field">
+            <textarea></textarea>
+        </div>
+        <div class="ui primary submit labeled icon button">
+            <i class="icon edit"></i> Add Reply
+        </div>
+    </form>
+</div>

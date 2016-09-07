@@ -2,7 +2,6 @@
  * Review
  */
 export class Review {
-    constructor(parameters) {
-        
-    }
+    public userName: string;
+    public content: string;
 }
