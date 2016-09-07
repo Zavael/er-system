@@ -3,12 +3,13 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
-	PersonListComponent,
+	UserListComponent,
 	ProjectListComponent,
 	ProjectDetailComponent,
 	LoginComponent,
 	RegisterComponent,
 	HomeComponent,
+	ReviewsComponent,
 	PageNotFoundComponent
 } from './components';
 
@@ -38,5 +39,5 @@ const routes: Routes = [
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
 
 export const appRoutingProviders: any[] = [
-	PersonListComponent, ProjectListComponent, ProjectDetailComponent, LoginComponent, RegisterComponent, HomeComponent, PageNotFoundComponent
+	UserListComponent, ProjectListComponent, ProjectDetailComponent, LoginComponent, RegisterComponent, HomeComponent, ReviewsComponent, PageNotFoundComponent
 ];

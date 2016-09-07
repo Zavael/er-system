@@ -13,11 +13,11 @@
             <br />
             <div class="ui blue tag label">
                 <i class="mail icon"></i>
-                <a class="detail">14</a>
+                <a class="detail">{{project.projectReviews ? project.assignedUsers.size : 0}}</a>
             </div>
             <div class="ui red tag label">
                 <i class="user icon"></i>
-                <a class="detail">6</a>
+                <a class="detail">{{project.assignedUsers ? project.assignedUsers.size : 0}}</a>
             </div>
         </div>
     </div>

@@ -26,6 +26,7 @@ export class ProjectService {
 			let project = new Project();
 			project.name = designation();
 			project.description = paragraph(50);
+			
 			projects.push(project);
 		}
 		return projects;
