@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>sk.badand.ersystem</groupId>
-	<artifactId>ur-system-backend</artifactId>
+	<artifactId>er-system-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>ur-system-backend</name>
+	<name>er-system-backend</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
