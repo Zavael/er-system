@@ -1,0 +1,7 @@
+<form *ngIf="loginService.user"  class="ui reply form">
+    <div class="field">
+        <textarea></textarea>
+    </div>
+    <button class="ui teal button" (click)="addReview()">Add</button>
+</form>
+<div *ngIf="!loginService.user">Log in to add reviews</div>

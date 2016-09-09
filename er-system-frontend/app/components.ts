@@ -6,6 +6,7 @@ export * from './components/project-list.component';
 export * from './components/home.component';
 export * from './components/login.component';
 export * from './components/register.component';
-export * from './components/reviews.component';
+export * from './components/review-list.component';
+export * from './components/review-add.component';
 export * from './components/page-not-found.component';
 //export * from './components/.component';

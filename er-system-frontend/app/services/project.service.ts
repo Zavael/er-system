@@ -37,7 +37,7 @@ export class ProjectService {
 			project.projectReviews = [];
 			for (var i = 0; i < Math.floor(Math.random() * 10); i++) {
 				let review = new Review();
-				review.userName = designation();
+				review.user = project.assignedUsers[Math.floor(Math.random() * project.assignedUsers.length)];
 				review.content = paragraph(50);
 				project.projectReviews.push(review);
 			}

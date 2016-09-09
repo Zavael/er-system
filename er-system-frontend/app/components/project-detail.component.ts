@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Project } from '../models';
+import { Project, Review } from '../models';
 
 @Component({
     selector: 'project-detail',
@@ -14,7 +14,11 @@ export class ProjectDetailComponent implements OnInit {
 
     ngOnInit() { }
 
-    goBack(){
+    goBack() {
         this.onBack.emit();
+    }
+
+    onNewReviewEvent(review: Review) {
+        console.debug("new review: ", review);
     }
 }

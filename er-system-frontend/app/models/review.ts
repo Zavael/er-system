@@ -1,7 +1,9 @@
+import { User } from '../models';
+
 /**
  * Review
  */
 export class Review {
-    public userName: string;
+    public user: User;
     public content: string;
 }

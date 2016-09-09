@@ -9,7 +9,8 @@ import {
 	LoginComponent,
 	RegisterComponent,
 	HomeComponent,
-	ReviewsComponent,
+	ReviewListComponent,
+	ReviewAddComponent,
 	PageNotFoundComponent
 } from './components';
 
@@ -39,5 +40,11 @@ const routes: Routes = [
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
 
 export const appRoutingProviders: any[] = [
-	UserListComponent, ProjectListComponent, ProjectDetailComponent, LoginComponent, RegisterComponent, HomeComponent, ReviewsComponent, PageNotFoundComponent
+	UserListComponent,
+	ProjectListComponent, ProjectDetailComponent,
+	LoginComponent,
+	RegisterComponent,
+	HomeComponent,
+	ReviewListComponent, ReviewAddComponent,
+	PageNotFoundComponent
 ];

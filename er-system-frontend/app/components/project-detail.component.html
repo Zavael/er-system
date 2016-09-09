@@ -7,11 +7,11 @@
 				<div class="sub header">
 					<div class="ui blue tag label">
 						<i class="mail icon"></i>
-						<a class="detail">{{project.projectReviews ? project.assignedUsers.size : 0}}</a>
+						<a class="detail">{{project.projectReviews ? project.projectReviews.length : 0}}</a>
 					</div>
 					<div class="ui red tag label">
 						<i class="user icon"></i>
-						<a class="detail">{{project.assignedUsers ? project.assignedUsers.size : 0}}</a>
+						<a class="detail">{{project.assignedUsers ? project.assignedUsers.length : 0}}</a>
 					</div>
 				</div>
 			</div>
@@ -37,9 +37,9 @@
 					<i class="small comments icon"></i>
 					<div class="content">Reviews</div>
 				</h3>
-				<reviews *ngIf="project.projectReviews" [reviews]="project.projectReviews"></reviews>
+				<review-list *ngIf="project.projectReviews" [reviews]="project.projectReviews"></review-list>
 				<p *ngIf="!project.projectReviews">No reviews yet... be first to add!</p>
-				<p>Add new review -> router</p>
+				<review-add [project]="project" (onNewReview)="onNewReviewEvent($event)"></review-add>
 			</div>
 		</div>
 	</div>
