@@ -7,9 +7,10 @@ Employee review system
  * verify with `node -v`, `npm -v` and `mvn -v` in a terminal window
  
 ## Start
- * startup spring boot app `er-system-backend`
+ * startup spring boot app `er-system-backend` in IDE or in console:
   + `mvn package`
   + `java -jar /target/er-system-backend-0.0.1-SNAPSHOT.jar`
- * run `npm install` in `er-system-frontend` app dir
- * run `npm start`
+ * start up `er-system-frontend` in root folder in console:
+  + run `npm install`
+  + run `npm start`
  * go to [localhost:3000](http://localhost:3000/) in browser
