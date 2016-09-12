@@ -1,6 +1,6 @@
 <form *ngIf="loginService.user"  class="ui reply form">
     <div class="field">
-        <textarea></textarea>
+        <textarea name="content" [(ngModel)]="review.content"></textarea>
     </div>
     <button class="ui teal button" (click)="addReview()">Add</button>
 </form>

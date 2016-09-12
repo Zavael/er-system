@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { Review, Project, User } from '../models';
-import { LoginService } from '../services';
+import { LoginService, ProjectService } from '../services';
 
 @Component({
     selector: 'review-add',
@@ -15,15 +15,28 @@ export class ReviewAddComponent implements OnInit, OnDestroy {
     @Output()
     onNewReview = new EventEmitter<Review>();
 
-    constructor(private loginService: LoginService) { }
+    constructor(private loginService: LoginService, private projectService: ProjectService) { }
 
     addReview() {
+        console.log('adding review');
         this.onNewReview.emit(this.review);
+        this.review.author = this.loginService.user;
+        let proj = this.project;
+        this.projectService.addReview(proj, this.review).subscribe(
+            result => {
+                console.log("review added");
+                this.project = result;
+            },
+            error => {
+                console.error(error);
+            }
+        );
+        this.review = new Review();
     }
 
     ngOnInit() {
         console.log('ngOnInit');
-        this.review.user = this.loginService.user;
+        this.review.author = this.loginService.user;
     }
     ngOnDestroy() { console.log('ngOnDestroy'); }
 }

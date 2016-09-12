@@ -1,29 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { HeadersService } from '../services';
+import { HeadersService, LoginService } from '../services';
 import { Project, User, Review, designation, paragraph } from '../models';
 import {Observable} from 'rxjs/Rx';
+import { ErrorUtil } from '../utils';
 
 @Injectable()
 export class ProjectService {
 
-    // constructor(private http: Http, private headerService: HeadersService) { }
-    constructor(private http: Http) { }
+	private errorUtil = new ErrorUtil();
+
+    constructor(private http: Http, private headersService: HeadersService, private loginService: LoginService) { }
 
     public getAllProjects() {
         // return this.http
-        //     .get(this.headerService.publicUrl + '/projects', this.headerService.getJsonHeaders())
-        //     .map(res => res.json());
-
-        return Observable.create((subscriber) => {
-			subscriber.next(this.getMockProjects());
-		});
+        //     .get(this.headersService.publicUrl + 'projects', this.headersService.getJsonHeaders())
+        //     .map(res => res.json())
+		// 	.catch(this.errorUtil.simpleHandler);
+		return this.getMockProjects();
     }
 
-	private getMockProjects(): Project[] {
+	public addReview(project: Project, review: Review): Observable<Project> {
+        console.log('putting review to project');
+		project.projectReviews.push(review);
+		return this.http
+			.put(this.headersService.apiUrl + 'projects/' + project.id, project, this.headersService.getJsonHeaders(this.loginService.token))
+			.map(res => res.json)
+			.catch(this.errorUtil.simpleHandler);
+	}
+
+	private getMockProjects(): Observable<Project[]> {
 		let projects: Project[] = [];
 		for (var index = 0; index < 7; index++) {
 			let project = new Project();
+			project.id = index;
 			project.name = designation();
 			project.description = paragraph(50);
 			project.assignedUsers = [];
@@ -37,12 +47,14 @@ export class ProjectService {
 			project.projectReviews = [];
 			for (var i = 0; i < Math.floor(Math.random() * 10); i++) {
 				let review = new Review();
-				review.user = project.assignedUsers[Math.floor(Math.random() * project.assignedUsers.length)];
+				review.author = project.assignedUsers[Math.floor(Math.random() * project.assignedUsers.length)];
 				review.content = paragraph(50);
 				project.projectReviews.push(review);
 			}
 			projects.push(project);
 		}
-		return projects;
+		return Observable.create((subscriber) => {
+			subscriber.next(projects);
+		});
 	}
 }

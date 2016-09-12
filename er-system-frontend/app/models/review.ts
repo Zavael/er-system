@@ -4,6 +4,6 @@ import { User } from '../models';
  * Review
  */
 export class Review {
-    public user: User;
+    public author: User;
     public content: string;
 }
