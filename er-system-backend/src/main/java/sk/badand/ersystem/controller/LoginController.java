@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping("/login")
 public class LoginController {
 
-    private static final int SECONDS_TO_EXPIRE_TOKEN = 20;
+    private static final int SECONDS_TO_EXPIRE_TOKEN = 30 * 60;
     private final UserService userService;
 
     @Autowired

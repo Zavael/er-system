@@ -1,8 +1,6 @@
 package sk.badand.ersystem.filter;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.*;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.*;
@@ -27,23 +25,24 @@ public class JwtFilter extends GenericFilterBean {
 
         if ("OPTIONS".equals(request.getMethod())) { //TODO: extract to options filter?
             response.setStatus(HttpServletResponse.SC_OK);
-            filterChain.doFilter(servletRequest, servletResponse);
         } else {
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                throw new ServletException("Missing or invalid Authorization header.");
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Missing or invalid authorization header.");
+                return;
             }
 
             final String token = authHeader.substring(7); // The part after "Bearer "
             try {
                 final Claims claims = Jwts.parser().setSigningKey(SIGNING_KEY).parseClaimsJws(token).getBody();
                 request.setAttribute("claims", claims);
-            } catch (SignatureException se) {
-                throw new ServletException("Invalid token");
+            } catch (JwtException e) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token! " + e.getMessage());
+                return;
             }
-
-            filterChain.doFilter(servletRequest, servletResponse);
         }
+
+        filterChain.doFilter(servletRequest, servletResponse);
 
     }
 }
