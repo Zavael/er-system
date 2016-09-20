@@ -13,11 +13,10 @@ export class ProjectService {
     constructor(private http: Http, private headersService: HeadersService, private loginService: LoginService) { }
 
     public getAllProjects() {
-        // return this.http
-        //     .get(this.headersService.publicUrl + 'projects', this.headersService.getJsonHeaders())
-        //     .map(res => res.json())
-		// 	.catch(this.errorUtil.simpleHandler);
-		return this.getMockProjects();
+		return this.http
+			.get(this.headersService.publicUrl + 'projects', this.headersService.getJsonHeaders())
+			.map(res => res.json())
+			.catch(this.errorUtil.simpleHandler);
     }
 
 	public addReview(project: Project, review: Review): Observable<Project> {

@@ -1,9 +1,10 @@
 import { User } from '../models';
 
 /**
- * Review
+ * UserReview
  */
-export class Review {
+export class UserReview {
     public author: User;
+    public reviewedUser: User;
     public content: string;
 }
