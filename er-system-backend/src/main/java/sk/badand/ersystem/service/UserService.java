@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import sk.badand.ersystem.domain.User;
 import sk.badand.ersystem.repository.UserRepository;
 
+import javax.servlet.ServletException;
 import java.util.Optional;
 
 /**
@@ -20,5 +21,12 @@ public class UserService {
 
     public Optional<User> findByUserName(String userName) {
         return userRepository.findByUserName(userName);
+    }
+
+    public User create(User user) throws ServletException {
+        if (userRepository.findByUserName(user.getUserName()).isPresent()) {
+            throw new ServletException("User already present! " + user.getUserName());
+        }
+        return userRepository.save(user);
     }
 }

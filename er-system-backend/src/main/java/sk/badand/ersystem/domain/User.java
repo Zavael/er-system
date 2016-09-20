@@ -26,11 +26,17 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private Set<ProjectTeam> projectTeams;
+    @OneToMany(mappedBy = "reviewer")
+    private List<ProjectReview> projectReviews;
 
     @OneToMany(mappedBy = "user")
-    private List<ProjectReview> projectReviews;
+    private List<AssignedUser> assignments;
+
+    @OneToMany(mappedBy = "reviewee")
+    private List<UserReview> ownReviews;
+
+    @OneToMany(mappedBy = "reviewer")
+    private List<UserReview> createdReviews;
 
     public User(String firstName, String surname, String userName, String password) {
         this.firstName = firstName;

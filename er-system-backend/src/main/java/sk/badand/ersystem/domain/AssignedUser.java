@@ -5,28 +5,28 @@ import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerId;
 import javax.persistence.*;
 
 /**
- * Created by abadinka on 27. 6. 2016.
+ * Created by abadinka on 20. 9. 2016.
  */
 @Entity
 @IdClass(ProjectReviewerId.class)
-public class ProjectReview {
+public class AssignedUser {
 
     @Id
-    private long projectId;
+    private Long userId;
 
     @Id
-    private long userId;
+    private Long projectId;
 
-    @Column(nullable = false)
-    private String review;
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    private AssignmentState state;
+
+    private boolean isSupervisor;
 
     @ManyToOne
     @JoinColumn(name = "userId", insertable = false, updatable = false)
-    private User reviewer;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
-    private Project reviewedProject;
-
-
+    private Project project;
 }

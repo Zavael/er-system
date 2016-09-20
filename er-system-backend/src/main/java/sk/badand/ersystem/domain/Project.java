@@ -25,14 +25,21 @@ public class Project {
     @Column(nullable = true)
     private Date finished;
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "reviewedProject")
     private List<ProjectReview> projectReviews;
+
+    @OneToMany(mappedBy = "project")
+    private List<AssignedUser> assignedUsers;
 
     public Project(String name) {
         this.name = name;
     }
 
     public Project() {
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
