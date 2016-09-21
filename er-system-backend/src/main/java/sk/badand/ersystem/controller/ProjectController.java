@@ -1,10 +1,12 @@
 package sk.badand.ersystem.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import sk.badand.ersystem.domain.Project;
 import sk.badand.ersystem.service.ProjectService;
+import sk.badand.ersystem.views.ProjectView;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class ProjectController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @JsonView(ProjectView.class)
     public List<Project> getProjects(){
         return projectService.findAllProjects();
     }

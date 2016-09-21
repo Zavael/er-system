@@ -1,7 +1,9 @@
 package sk.badand.ersystem.domain;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import sk.badand.ersystem.views.UserView;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -59,14 +61,17 @@ public class User {
         return surname;
     }
 
+    @JsonView(UserView.class)
     public List<ProjectReview> getProjectReviews() {
         return projectReviews;
     }
 
+    @JsonView(UserView.class)
     public List<UserReview> getOwnReviews() {
         return ownReviews;
     }
 
+    @JsonView(UserView.class)
     public List<UserReview> getUserReviews() {
         return userReviews;
     }

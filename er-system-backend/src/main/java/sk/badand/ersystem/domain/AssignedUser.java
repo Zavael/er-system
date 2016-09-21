@@ -1,7 +1,11 @@
 package sk.badand.ersystem.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerId;
+import sk.badand.ersystem.views.ProjectView;
+import sk.badand.ersystem.views.UserView;
 
 import javax.persistence.*;
 
@@ -55,10 +59,12 @@ public class AssignedUser {
         return position;
     }
 
+    @JsonView(ProjectView.class)
     public User getUser() {
         return user;
     }
 
+    @JsonView(UserView.class)
     public Project getProject() {
         return project;
     }
