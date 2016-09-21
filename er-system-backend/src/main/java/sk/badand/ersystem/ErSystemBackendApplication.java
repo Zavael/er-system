@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import sk.badand.ersystem.filter.JwtFilter;
-import sk.badand.ersystem.repository.ProjectRepository;
-import sk.badand.ersystem.repository.UserRepository;
+import sk.badand.ersystem.repository.*;
 import sk.badand.ersystem.util.CmdLineRunner;
 
 @SpringBootApplication
@@ -22,9 +21,8 @@ public class ErSystemBackendApplication {
         return registrationBean;
     }
 
-    @Bean
-    CommandLineRunner runner(UserRepository er, ProjectRepository pr) {
-        return new CmdLineRunner(er, pr);
+    CommandLineRunner runner(UserRepository er, ProjectRepository pr, AssignedStateRepository asr, ProjectReviewRepository prr, AssignmentsRepository ar) {
+        return new CmdLineRunner(er, pr, asr, prr, ar);
     }
 
     public static void main(String[] args) {

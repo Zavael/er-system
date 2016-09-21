@@ -1,6 +1,7 @@
 package sk.badand.ersystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public User registerUser(User user) throws ServletException {
+    public User registerUser(@RequestBody User user) throws ServletException {
         try {
             return userService.create(user);
         } catch (ServletException e) {

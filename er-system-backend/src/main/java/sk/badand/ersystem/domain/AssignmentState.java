@@ -33,4 +33,13 @@ public class AssignmentState {
     public String getDescription() {
         return description;
     }
+
+    public AssignmentState() {
+    }
+
+    public AssignmentState(String name, String text, String description) {
+        this.name = name;
+        this.text = text;
+        this.description = description;
+    }
 }

@@ -1,6 +1,10 @@
 package sk.badand.ersystem.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,11 +29,14 @@ public class Project {
     @Column(nullable = true)
     private Date finished;
 
-    @OneToMany(mappedBy = "reviewedProject")
-    private List<ProjectReview> projectReviews;
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    private List<ProjectReview> projectReviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "project")
-    private List<AssignedUser> assignedUsers;
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    private List<AssignedUser> assignedUsers = new ArrayList<>();
+
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    private List<UserReview> userReviews = new ArrayList<>();
 
     public Project(String name) {
         this.name = name;
@@ -60,5 +67,9 @@ public class Project {
 
     public List<ProjectReview> getProjectReviews() {
         return projectReviews;
+    }
+
+    public List<AssignedUser> getAssignedUsers() {
+        return assignedUsers;
     }
 }

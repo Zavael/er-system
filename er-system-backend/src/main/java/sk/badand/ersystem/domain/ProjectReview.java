@@ -26,7 +26,38 @@ public class ProjectReview {
 
     @ManyToOne
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
-    private Project reviewedProject;
+    private Project project;
 
+    public ProjectReview() {
+    }
 
+    public ProjectReview(long projectId, long userId, String review) {
+        this.projectId = projectId;
+        this.userId = userId;
+        this.review = review;
+    }
+
+    public boolean hasProject() {
+        return project != null;
+    }
+
+    public boolean isReviewOf(long projectId) {
+        return project != null && project.getId().equals(projectId);
+    }
+
+    public boolean hasReviewer() {
+        return reviewer != null;
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public User getReviewer() {
+        return reviewer;
+    }
+
+    public Project getProject() {
+        return project;
+    }
 }

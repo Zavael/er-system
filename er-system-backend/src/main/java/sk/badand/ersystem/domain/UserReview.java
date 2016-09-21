@@ -1,5 +1,6 @@
 package sk.badand.ersystem.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerId;
 import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerRevieweeId;
 
@@ -34,5 +35,24 @@ public class UserReview {
 
     @ManyToOne
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
-    private Project reviewedProject;
+    private Project project;
+
+    public UserReview() {
+    }
+
+    public String getReview() {
+        return review;
+    }
+
+    public User getReviewer() {
+        return reviewer;
+    }
+
+    public User getReviewee() {
+        return reviewee;
+    }
+
+    public Project getProject() {
+        return project;
+    }
 }

@@ -1,8 +1,11 @@
 package sk.badand.ersystem.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by abadinka on 27. 6. 2016.
@@ -26,17 +29,17 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "reviewer")
-    private List<ProjectReview> projectReviews;
-
     @OneToMany(mappedBy = "user")
-    private List<AssignedUser> assignments;
+    private List<AssignedUser> assignments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "reviewer")
+    private List<ProjectReview> projectReviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "reviewer")
+    private List<UserReview> userReviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "reviewee")
-    private List<UserReview> ownReviews;
-
-    @OneToMany(mappedBy = "reviewer")
-    private List<UserReview> createdReviews;
+    private List<UserReview> ownReviews = new ArrayList<>();
 
     public User(String firstName, String surname, String userName, String password) {
         this.firstName = firstName;
@@ -60,11 +63,23 @@ public class User {
         return projectReviews;
     }
 
+    public List<UserReview> getOwnReviews() {
+        return ownReviews;
+    }
+
+    public List<UserReview> getUserReviews() {
+        return userReviews;
+    }
+
     public String getUserName() {
         return userName;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
