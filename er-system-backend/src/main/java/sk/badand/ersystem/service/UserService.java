@@ -29,4 +29,8 @@ public class UserService {
         }
         return userRepository.save(user);
     }
+
+    public User findUser(long userId) {
+        return userRepository.findOne(userId);
+    }
 }
