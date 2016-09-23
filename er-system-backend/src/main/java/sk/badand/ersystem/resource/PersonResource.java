@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sk.badand.ersystem.domain.User;
-import sk.badand.ersystem.service.UserService;
+import sk.badand.ersystem.domain.Person;
+import sk.badand.ersystem.service.PersonService;
 
 import javax.servlet.ServletException;
 
@@ -15,20 +15,20 @@ import javax.servlet.ServletException;
  */
 @RestController
 @RequestMapping("/api/users")
-public class UserResource {
+public class PersonResource {
 
-    private final UserService userService;
+    private final PersonService personService;
 
     @Autowired
-    public UserResource(UserService userService) {
-        this.userService = userService;
+    public PersonResource(PersonService personService) {
+        this.personService = personService;
     }
 
-    @RequestMapping(path = "/{userId}", method = RequestMethod.GET)
-    public User findUser(@PathVariable Long userId) throws ServletException {
-        if (userId == null){
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public Person findPerson(@PathVariable Long id) throws ServletException {
+        if (id == null){
             throw new ServletException("Wrong arguments provided");
         }
-        return userService.findUser(userId);
+        return personService.findPerson(id);
     }
 }

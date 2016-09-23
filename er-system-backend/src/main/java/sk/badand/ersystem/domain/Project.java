@@ -17,7 +17,7 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true)
+    @Column(nullable = true, length = 2048)
     private String description;
 
     @Column(nullable = true)
@@ -30,13 +30,16 @@ public class Project {
     private List<ProjectReview> projectReviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private List<AssignedUser> assignedUsers = new ArrayList<>();
+    private List<AssignedPerson> assignedPersons = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private List<UserReview> userReviews = new ArrayList<>();
+    private List<PersonReview> personReviews = new ArrayList<>();
 
-    public Project(String name) {
+    public Project(String name, String description, Date started, Date finished) {
         this.name = name;
+        this.description = description;
+        this.started = started;
+        this.finished = finished;
     }
 
     public Project() {
@@ -66,7 +69,7 @@ public class Project {
         return projectReviews;
     }
 
-    public List<AssignedUser> getAssignedUsers() {
-        return assignedUsers;
+    public List<AssignedPerson> getAssignedPersons() {
+        return assignedPersons;
     }
 }

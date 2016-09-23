@@ -1,11 +1,9 @@
 package sk.badand.ersystem.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerId;
 import sk.badand.ersystem.views.ProjectView;
-import sk.badand.ersystem.views.UserView;
+import sk.badand.ersystem.views.PersonView;
 
 import javax.persistence.*;
 
@@ -14,10 +12,10 @@ import javax.persistence.*;
  */
 @Entity
 @IdClass(ProjectReviewerId.class)
-public class AssignedUser {
+public class AssignedPerson {
 
     @Id
-    private Long userId;
+    private Long personId;
 
     @Id
     private Long projectId;
@@ -29,18 +27,18 @@ public class AssignedUser {
     private String position;
 
     @ManyToOne
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
-    private User user;
+    @JoinColumn(name = "personId", insertable = false, updatable = false)
+    private Person person;
 
     @ManyToOne
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
     private Project project;
 
-    public AssignedUser() {
+    public AssignedPerson() {
     }
 
-    public AssignedUser(Long userId, Long projectId, AssignmentState state, boolean isSupervisor, String position) {
-        this.userId = userId;
+    public AssignedPerson(Long personId, Long projectId, AssignmentState state, boolean isSupervisor, String position) {
+        this.personId = personId;
         this.projectId = projectId;
         this.state = state;
         this.isSupervisor = isSupervisor;
@@ -60,11 +58,11 @@ public class AssignedUser {
     }
 
     @JsonView(ProjectView.class)
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    @JsonView(UserView.class)
+    @JsonView(PersonView.class)
     public Project getProject() {
         return project;
     }

@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sk.badand.ersystem.domain.User;
-import sk.badand.ersystem.service.UserService;
+import sk.badand.ersystem.domain.Person;
+import sk.badand.ersystem.service.PersonService;
 
 import javax.servlet.ServletException;
 
@@ -15,19 +15,19 @@ import javax.servlet.ServletException;
  */
 @RestController
 @RequestMapping("/users")
-public class UserController {
+public class PersonController {
 
-    private final UserService userService;
+    private final PersonService personService;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public PersonController(PersonService personService) {
+        this.personService = personService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public User registerUser(@RequestBody User user) throws ServletException {
+    public Person registerPerson(@RequestBody Person person) throws ServletException {
         try {
-            return userService.create(user);
+            return personService.create(person);
         } catch (ServletException e) {
             throw e;
         }

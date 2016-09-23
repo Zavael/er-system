@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class ProjectReviewerId implements Serializable {
     private long projectId;
-    private long userId;
+    private long personId;
 
     @Override
     public boolean equals(Object o) {
@@ -16,11 +16,11 @@ public class ProjectReviewerId implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         ProjectReviewerId that = (ProjectReviewerId) o;
         return projectId == that.projectId &&
-                userId == that.userId;
+                personId == that.personId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectId, userId);
+        return Objects.hash(projectId, personId);
     }
 }

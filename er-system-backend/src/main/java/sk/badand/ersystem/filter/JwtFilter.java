@@ -24,7 +24,6 @@ public class JwtFilter extends GenericFilterBean {
         final String authHeader = request.getHeader("Authorization");
 
         if ("OPTIONS".equals(request.getMethod())) { //TODO: extract to options filter?
-            response.setStatus(HttpServletResponse.SC_OK);
         } else {
 
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -43,6 +42,5 @@ public class JwtFilter extends GenericFilterBean {
         }
 
         filterChain.doFilter(servletRequest, servletResponse);
-
     }
 }

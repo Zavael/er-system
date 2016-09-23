@@ -1,9 +1,8 @@
 package sk.badand.ersystem.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import sk.badand.ersystem.views.UserView;
+import sk.badand.ersystem.views.PersonView;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
  * Created by abadinka on 27. 6. 2016.
  */
 @Entity
-public class User {
+public class Person {
 
     @Id
     @GeneratedValue
@@ -31,26 +30,26 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "user")
-    private List<AssignedUser> assignments = new ArrayList<>();
+    @OneToMany(mappedBy = "person")
+    private List<AssignedPerson> assignments = new ArrayList<>();
 
     @OneToMany(mappedBy = "reviewer")
     private List<ProjectReview> projectReviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "reviewer")
-    private List<UserReview> userReviews = new ArrayList<>();
+    private List<PersonReview> personReviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "reviewee")
-    private List<UserReview> ownReviews = new ArrayList<>();
+    private List<PersonReview> ownReviews = new ArrayList<>();
 
-    public User(String firstName, String surname, String userName, String password) {
+    public Person(String firstName, String surname, String userName, String password) {
         this.firstName = firstName;
         this.surname = surname;
         this.userName = userName;
         this.password = password;
     }
 
-    public User() {
+    public Person() {
     }
 
     public String getFirstName() {
@@ -61,27 +60,28 @@ public class User {
         return surname;
     }
 
-    @JsonView(UserView.class)
+    @JsonView(PersonView.class)
     public List<ProjectReview> getProjectReviews() {
         return projectReviews;
     }
 
-    @JsonView(UserView.class)
-    public List<UserReview> getOwnReviews() {
+    @JsonView(PersonView.class)
+    public List<PersonReview> getOwnReviews() {
         return ownReviews;
     }
 
-    @JsonView(UserView.class)
-    public List<UserReview> getUserReviews() {
-        return userReviews;
+    @JsonView(PersonView.class)
+    public List<PersonReview> getPersonReviews() {
+        return personReviews;
     }
 
     public String getUserName() {
         return userName;
     }
 
+    @JsonIgnore
     public String getPassword() {
-        return "**********";
+        return password;
     }
 
     public Long getId() {

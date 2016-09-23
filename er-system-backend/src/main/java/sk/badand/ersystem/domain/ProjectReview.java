@@ -1,10 +1,9 @@
 package sk.badand.ersystem.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerId;
 import sk.badand.ersystem.views.ProjectView;
-import sk.badand.ersystem.views.UserView;
+import sk.badand.ersystem.views.PersonView;
 
 import javax.persistence.*;
 
@@ -19,14 +18,14 @@ public class ProjectReview {
     private long projectId;
 
     @Id
-    private long userId;
+    private long personId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2048)
     private String review;
 
     @ManyToOne
-    @JoinColumn(name = "userId", insertable = false, updatable = false)
-    private User reviewer;
+    @JoinColumn(name = "personId", insertable = false, updatable = false)
+    private Person reviewer;
 
     @ManyToOne
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
@@ -35,9 +34,9 @@ public class ProjectReview {
     public ProjectReview() {
     }
 
-    public ProjectReview(long projectId, long userId, String review) {
+    public ProjectReview(long projectId, long personId, String review) {
         this.projectId = projectId;
-        this.userId = userId;
+        this.personId = personId;
         this.review = review;
     }
 
@@ -58,11 +57,11 @@ public class ProjectReview {
     }
 
     @JsonView(ProjectView.class)
-    public User getReviewer() {
+    public Person getReviewer() {
         return reviewer;
     }
 
-    @JsonView(UserView.class)
+    @JsonView(PersonView.class)
     public Project getProject() {
         return project;
     }

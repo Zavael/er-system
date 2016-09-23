@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import sk.badand.ersystem.filter.JwtFilter;
 import sk.badand.ersystem.repository.*;
 import sk.badand.ersystem.util.CmdLineRunner;
@@ -13,15 +14,16 @@ import sk.badand.ersystem.util.CmdLineRunner;
 public class ErSystemBackendApplication {
 
     @Bean
+    @Order(1)
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
         registrationBean.addUrlPatterns("/api/*");
-
         return registrationBean;
     }
 
-    CommandLineRunner runner(UserRepository er, ProjectRepository pr, AssignedStateRepository asr, ProjectReviewRepository prr, AssignmentsRepository ar) {
+    @Bean
+    CommandLineRunner runner(PersonRepository er, ProjectRepository pr, AssignedStateRepository asr, ProjectReviewRepository prr, AssignmentsRepository ar) {
         return new CmdLineRunner(er, pr, asr, prr, ar);
     }
 

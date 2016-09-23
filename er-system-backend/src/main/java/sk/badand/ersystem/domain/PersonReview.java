@@ -1,11 +1,8 @@
 package sk.badand.ersystem.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
-import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerId;
 import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerRevieweeId;
-import sk.badand.ersystem.views.UserView;
+import sk.badand.ersystem.views.PersonView;
 
 import javax.persistence.*;
 
@@ -14,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @IdClass(ProjectReviewerRevieweeId.class)
-public class UserReview {
+public class PersonReview {
 
     @Id
     private long projectId;
@@ -25,22 +22,22 @@ public class UserReview {
     @Id
     private long revieweeId;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 2048)
     private String review;
 
     @ManyToOne
     @JoinColumn(name = "reviewerId", insertable = false, updatable = false)
-    private User reviewer;
+    private Person reviewer;
 
     @ManyToOne
     @JoinColumn(name = "revieweeId", insertable = false, updatable = false)
-    private User reviewee;
+    private Person reviewee;
 
     @ManyToOne
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
     private Project project;
 
-    public UserReview() {
+    public PersonReview() {
     }
 
     public String getReview() {
@@ -48,16 +45,16 @@ public class UserReview {
     }
 
     @JsonView(ProjectReview.class)
-    public User getReviewer() {
+    public Person getReviewer() {
         return reviewer;
     }
 
     @JsonView(ProjectReview.class)
-    public User getReviewee() {
+    public Person getReviewee() {
         return reviewee;
     }
 
-    @JsonView(UserView.class)
+    @JsonView(PersonView.class)
     public Project getProject() {
         return project;
     }
