@@ -1,6 +1,6 @@
 export * from './components/nav-bar.component';
-export * from './components/user-detail.component';
-export * from './components/user-list.component';
+export * from './components/person-detail.component';
+export * from './components/project-person-list.component';
 export * from './components/project-detail.component';
 export * from './components/project-list.component';
 export * from './components/home.component';
@@ -9,4 +9,3 @@ export * from './components/register.component';
 export * from './components/review-list.component';
 export * from './components/review-add.component';
 export * from './components/page-not-found.component';
-//export * from './components/.component';

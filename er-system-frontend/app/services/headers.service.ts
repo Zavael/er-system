@@ -9,16 +9,17 @@ export class HeadersService {
     getJsonHeaders(token?: string) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
         if (token)
             headers.append('Authorization', 'Bearer ' + token)
         return { headers: headers };
     }
 
     get publicUrl():string{
-        return "http://localhost:8080/";
+        return "http://localhost:8080";
     }
 
     get apiUrl():string{
-        return "http://localhost:8080/api/";
+        return "http://localhost:8080/api";
     }
 }

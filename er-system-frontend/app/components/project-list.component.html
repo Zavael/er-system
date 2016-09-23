@@ -9,7 +9,7 @@
             <a class="header" (click)="onSelect(project)">
                 <h3>{{project.name}}</h3>
             </a>
-            <div class="description">{{project.description | slice:0:50}}...</div>
+            <div class="description">{{project.description | slice:0:50 : ""}}...</div>
             <br />
             <div class="ui blue tag label">
                 <i class="comments icon"></i>
@@ -17,7 +17,7 @@
             </div>
             <div class="ui red tag label">
                 <i class="users icon"></i>
-                <a class="detail">{{project.assignedUsers ? project.assignedUsers.length : 0}}</a>
+                <a class="detail">{{project.assignedPersons ? project.assignedPersons.length : 0}}</a>
             </div>
         </div>
     </div>

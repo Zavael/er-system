@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Project, Review } from '../models';
+import { Project, ProjectReview } from '../models';
+import { ProjectService } from '../services';
 
 @Component({
     selector: 'project-detail',
@@ -10,7 +11,7 @@ export class ProjectDetailComponent implements OnInit {
     project: Project;
     @Output() onBack = new EventEmitter();
 
-    constructor() { }
+    constructor(private projectService: ProjectService) { }
 
     ngOnInit() { }
 
@@ -18,7 +19,9 @@ export class ProjectDetailComponent implements OnInit {
         this.onBack.emit();
     }
 
-    onNewReviewEvent(review: Review) {
-        console.debug("new review: ", review);
+    onNewReviewEvent(project: Project) {
+        console.debug("updated project: ", project);
+        this.project = project;
+        //this.projectService.getProjectDetail(this.project);
     }
 }

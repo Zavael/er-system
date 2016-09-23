@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'user-detail',
-    templateUrl: 'app/components/user-detail.component.html'
+    selector: 'person-detail',
+    templateUrl: 'app/components/person-detail.component.html'
 })
 export class PersonDetailComponent implements OnInit {
     constructor() { }

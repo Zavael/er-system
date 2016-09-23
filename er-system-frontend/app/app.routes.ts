@@ -3,7 +3,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
-	UserListComponent,
+	ProjectPersonListComponent,
 	ProjectListComponent,
 	ProjectDetailComponent,
 	LoginComponent,
@@ -17,7 +17,7 @@ import {
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'login',
+		redirectTo: 'home',
 		pathMatch: 'full'
 	},
 	{
@@ -40,7 +40,7 @@ const routes: Routes = [
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
 
 export const appRoutingProviders: any[] = [
-	UserListComponent,
+	ProjectPersonListComponent,
 	ProjectListComponent, ProjectDetailComponent,
 	LoginComponent,
 	RegisterComponent,

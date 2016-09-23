@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService, UserService } from '../services';
-import { User } from '../models';
+import { LoginService, PersonService } from '../services';
+import { Person } from '../models';
 
 @Component({
     selector: 'login',
     templateUrl: 'app/components/login.component.html',
-    providers: [UserService]
+    providers: [PersonService]
 })
 export class LoginComponent implements OnInit {
-    model: User = new User();
+    model: Person = new Person();
     private errorMessage: string = null;
 
-    constructor(private loginService: LoginService, private userService: UserService) { }
+    constructor(private loginService: LoginService, private userService: PersonService) { }
 
     ngOnInit() { }
 
-    onSubmit(event) {
+    onSubmit(event: any) {
         console.debug('submitting login');
         event.preventDefault();
         this.errorMessage = null;
         this.userService.login(this.model).subscribe(
-            result => this.onLoginResult(result),
+            result => this.onLoginResult(this.model, result),
             error => this.onLoginError(error)
         );
     }
@@ -29,19 +29,19 @@ export class LoginComponent implements OnInit {
         return this.loginService.isLogged();
     }
 
-    onLoginResult(result) {
+    onLoginResult(user: Person, result: any) {
         console.log(result);
-        this.loginService.setLoggedUser(result.user, result.token);
+        this.loginService.setLoggedUser(user, result);
         //this.router.navigate(['/home'])
     }
 
-    onLoginError(error) {
+    onLoginError(error: any) {
         console.error(error);
         this.resetModel();
         this.errorMessage = error._body;
     }
 
     resetModel() {
-        this.model = new User();;
+        this.model = new Person();;
     }
 }

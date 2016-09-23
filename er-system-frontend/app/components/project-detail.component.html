@@ -11,7 +11,7 @@
 					</div>
 					<div class="ui red tag label">
 						<i class="user icon"></i>
-						<a class="detail">{{project.assignedUsers ? project.assignedUsers.length : 0}}</a>
+						<a class="detail">{{project.assignedPersons ? project.assignedPersons.length : 0}}</a>
 					</div>
 				</div>
 			</div>
@@ -29,8 +29,8 @@
 					<i class="small users icon"></i>
 					<div class="content">Project allocations</div>
 				</h3>
-				<user-list *ngIf="project.assignedUsers" [users]="project.assignedUsers"></user-list>
-				<p *ngIf="!project.assignedUsers">No assigned users</p>
+				<project-person-list *ngIf="project.assignedPersons" [assignedPersons]="project.assignedPersons"></project-person-list>
+				<p *ngIf="!project.assignedPersons">No assigned users</p>
 			</div>
 			<div class="ui blue segment">
 				<h3 class="ui blue header">

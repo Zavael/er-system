@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Review } from '../models';
+import { ProjectReview } from '../models';
 
 @Component({
     selector: 'review-list',
@@ -7,7 +7,7 @@ import { Review } from '../models';
 })
 export class ReviewListComponent implements OnInit {
     @Input()
-    reviews: Review[];
+    reviews: ProjectReview[];
 
     constructor() { }
 

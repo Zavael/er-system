@@ -1,14 +1,16 @@
 <div class="ui large inverted fixed menu">
-	<a routerLink="/home" class="item image header">
-		<img src="images/logo.png" alt="" />
-		<p class="content">ER system</p>
+	<a routerLink="/home">
+		<div class="ui header item">
+			<img class="ui mini image" src="images/logo.png" alt="">
+			<div class="content">ER system</div>
+		</div>
 	</a>
 	<a routerLink="/projects" class="item">Projects</a>
 	<a *ngIf="loginService.isLogged()" routerLink="/profile" class="item">Profile</a>
 
 	<div class="right menu">
 		<strong *ngIf="loginService.isLogged()" class="item">{{loginService.user.userName}}</strong>
-		<a *ngIf="loginService.isLogged()" routerLink="/home" class="item" (click)="loginService.logout()" >Logout</a>
+		<a *ngIf="loginService.isLogged()" routerLink="/home" class="item" (click)="loginService.logout()">Logout</a>
 		<a *ngIf="!loginService.isLogged()" routerLink="/register" class="item">Register</a>
 		<a *ngIf="!loginService.isLogged()" routerLink="/login" class="item">Login</a>
 	</div>

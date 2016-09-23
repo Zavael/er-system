@@ -12,14 +12,12 @@ export class ProjectListComponent implements OnInit {
 
     constructor(private projectService: ProjectService) {
         this.projectService.getAllProjects().subscribe(
-            data => {
-                this.projects = data;
-            },
+            data => this.projects = data,
             error => console.error(error)
         );
     }
 
-    ngOnInit() { }
+    ngOnInit() { console.debug("init"); }
 
     onSelect(project: Project) {
         this.selectedProject = project;
