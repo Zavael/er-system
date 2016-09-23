@@ -12,22 +12,24 @@ export class ProjectService {
 
     constructor(private http: Http, private headersService: HeadersService, private loginService: LoginService) { }
 
-    public getAllProjects() : Observable<Project[]> {
+    public getAllProjects(): Observable<Project[]> {
+		console.debug("getAllProjects");
 		return this.http
 			.get(this.headersService.publicUrl + '/projects', this.headersService.getJsonHeaders())
 			.map(res => res.json())
 			.catch(this.errorUtil.simpleHandler);
     }
 
-    public getProjectDetail(project: Project) : Observable<Project> {
+    public getProjectDetail(id: number): Observable<Project> {
+		console.debug("getProjectDetail", id);
 		return this.http
-			.get(this.headersService.publicUrl + '/projects/' + project.id, this.headersService.getJsonHeaders())
+			.get(this.headersService.publicUrl + '/projects/' + id, this.headersService.getJsonHeaders())
 			.map(res => res.json())
 			.catch(this.errorUtil.simpleHandler);
     }
 
 	public addReview(project: Project, review: ProjectReview): Observable<Project> {
-        console.log('putting review to project');
+		console.debug("addReview", review);
 		project.projectReviews.push(review);
 		return this.http
 			.put(this.headersService.apiUrl + '/projects/' + project.id, project, this.headersService.getJsonHeaders(this.loginService.token))

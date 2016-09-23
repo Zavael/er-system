@@ -9,7 +9,7 @@
 	<a *ngIf="loginService.isLogged()" routerLink="/profile" class="item">Profile</a>
 
 	<div class="right menu">
-		<strong *ngIf="loginService.isLogged()" class="item">{{loginService.user.userName}}</strong>
+		<strong *ngIf="loginService.isLogged()" class="item">{{loginService.person.userName}}</strong>
 		<a *ngIf="loginService.isLogged()" routerLink="/home" class="item" (click)="loginService.logout()">Logout</a>
 		<a *ngIf="!loginService.isLogged()" routerLink="/register" class="item">Register</a>
 		<a *ngIf="!loginService.isLogged()" routerLink="/login" class="item">Login</a>

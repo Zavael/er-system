@@ -1,27 +1,31 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project, ProjectReview } from '../models';
 import { ProjectService } from '../services';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'project-detail',
     templateUrl: 'app/components/project-detail.component.html'
 })
 export class ProjectDetailComponent implements OnInit {
-    @Input()
     project: Project;
-    @Output() onBack = new EventEmitter();
 
-    constructor(private projectService: ProjectService) { }
+    constructor(
+        private projectService: ProjectService,
+        private route: ActivatedRoute,
+        private router: Router) { }
 
-    ngOnInit() { }
-
-    goBack() {
-        this.onBack.emit();
+    ngOnInit() {
+        this.route.params.forEach((params: Params) => {
+            let id = +params['id']; // (+) converts string 'id' to a number
+            this.projectService.getProjectDetail(id).subscribe(
+                project => this.project = project,
+                error => console.error(error));
+        });
     }
 
-    onNewReviewEvent(project: Project) {
-        console.debug("updated project: ", project);
-        this.project = project;
-        //this.projectService.getProjectDetail(this.project);
+    goBack(){
+        this.router.navigate(['/projects']);
     }
+
 }

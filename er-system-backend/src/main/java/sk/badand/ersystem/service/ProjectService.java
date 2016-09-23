@@ -30,4 +30,8 @@ public class ProjectService {
     public Project create(Project project) {
         return projectRepository.save(project);
     }
+
+    public Project findProject(long id) {
+        return projectRepository.findOne(id);
+    }
 }

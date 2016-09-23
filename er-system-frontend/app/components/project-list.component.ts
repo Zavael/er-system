@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from '../models';
 import { ProjectService } from '../services';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'project-list',
@@ -8,9 +9,11 @@ import { ProjectService } from '../services';
 })
 export class ProjectListComponent implements OnInit {
     projects: Project[];
-    selectedProject: Project;
 
-    constructor(private projectService: ProjectService) {
+    constructor(
+        private projectService: ProjectService,
+        private router: Router,
+        private route: ActivatedRoute) {
         this.projectService.getAllProjects().subscribe(
             data => this.projects = data,
             error => console.error(error)
@@ -20,10 +23,6 @@ export class ProjectListComponent implements OnInit {
     ngOnInit() { console.debug("init"); }
 
     onSelect(project: Project) {
-        this.selectedProject = project;
-    }
-
-    onBackEvent() {
-        this.selectedProject = null;
+        this.router.navigate(['/projects', project.id]);
     }
 }

@@ -26,10 +26,11 @@ const routes: Routes = [
 		// children: [
 		// 	{
 		// 		path: ':id',
-		// 		component: PersonListComponent
+		// 		component: ProjectDetailComponent
 		// 	}
 		// ]
 	},
+	{ path: 'projects/:id', component: ProjectDetailComponent },
 	{ path: 'home', component: HomeComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },

@@ -1,6 +1,7 @@
 package sk.badand.ersystem.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +28,11 @@ public class ProjectController {
     @JsonView(ProjectView.class)
     public List<Project> getProjects(){
         return projectService.findAllProjects();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    @JsonView(ProjectView.class)
+    public Project getProjectDetail(@PathVariable long id){
+        return projectService.findProject(id);
     }
 }

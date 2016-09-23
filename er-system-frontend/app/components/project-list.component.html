@@ -2,7 +2,7 @@
     Acquiring information...
 </p>
 
-<div *ngIf="projects && !selectedProject" class="ui relaxed divided list">
+<div *ngIf="projects" class="ui relaxed divided list">
     <div *ngFor="let project of projects" class="item top right attached label">
         <i class="huge middle aligned archive icon"></i>
         <div class="content" style="cursor: pointer">
@@ -21,8 +21,4 @@
             </div>
         </div>
     </div>
-</div>
-
-<div *ngIf="selectedProject">
-    <project-detail [project]="selectedProject" (onBack)="onBackEvent()"></project-detail>
 </div>
