@@ -5,6 +5,8 @@ import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerRevieweeId;
 import sk.badand.ersystem.views.PersonView;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by abadinka on 20. 9. 2016.
@@ -37,6 +39,9 @@ public class PersonReview {
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
     private Project project;
 
+    @OneToMany(mappedBy = "personReview")
+    private List<PersonReviewOpinion> opinions;
+
     public PersonReview() {
     }
 
@@ -57,5 +62,17 @@ public class PersonReview {
     @JsonView(PersonView.class)
     public Project getProject() {
         return project;
+    }
+
+    public List<PersonReviewOpinion> getAgreements() {
+        return opinions.stream()
+                .filter(opinion -> opinion.isAgreement())
+                .collect(Collectors.toList());
+    }
+
+    public List<PersonReviewOpinion> getDisagreements() {
+        return opinions.stream()
+                .filter(opinion -> !opinion.isAgreement())
+                .collect(Collectors.toList());
     }
 }
