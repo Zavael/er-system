@@ -25,7 +25,6 @@ public class JwtFilter extends GenericFilterBean {
 
         if ("OPTIONS".equals(request.getMethod())) { //TODO: extract to options filter?
         } else {
-
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Missing or invalid authorization header.");
                 return;

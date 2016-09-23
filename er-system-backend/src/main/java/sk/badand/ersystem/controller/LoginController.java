@@ -33,7 +33,6 @@ public class LoginController {
     public String loginPerson(@RequestBody Map<String, String> credentials) throws ServletException {
         final String userName = credentials.get("userName");
         final String password = credentials.get("password");
-        System.out.println(userName + ":" + password);
 
         if (userName == null || password == null) {
             throw new ServletException("Missing credentials");
