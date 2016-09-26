@@ -1,6 +1,7 @@
 package sk.badand.ersystem.domain;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import sk.badand.ersystem.domain.compositeKeys.ProjectPersonId;
 import sk.badand.ersystem.domain.compositeKeys.ProjectReviewerId;
 import sk.badand.ersystem.views.ProjectView;
 import sk.badand.ersystem.views.PersonView;
@@ -11,7 +12,7 @@ import javax.persistence.*;
  * Created by abadinka on 20. 9. 2016.
  */
 @Entity
-@IdClass(ProjectReviewerId.class)
+@IdClass(ProjectPersonId.class)
 public class AssignedPerson {
 
     @Id

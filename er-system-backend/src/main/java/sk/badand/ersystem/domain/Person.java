@@ -42,6 +42,9 @@ public class Person {
     @OneToMany(mappedBy = "reviewee")
     private List<PersonReview> ownReviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "opinionist")
+    private List<ProjectReviewOpinion> givenOpinions = new ArrayList<>();
+
     public Person(String firstName, String surname, String userName, String password) {
         this.firstName = firstName;
         this.surname = surname;

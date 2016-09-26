@@ -19,12 +19,12 @@ public class ProjectReviewerRevieweeOpinionistId implements Serializable {
         ProjectReviewerRevieweeOpinionistId that = (ProjectReviewerRevieweeOpinionistId) o;
         return projectId == that.projectId
                 && opinionistId == that.opinionistId
-                && revieweeId == that.revieweeId
-                && reviewerId == that.reviewerId;
+                && reviewerId == that.reviewerId
+                && revieweeId == that.revieweeId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectId, opinionistId, revieweeId, reviewerId);
+        return Objects.hash(projectId, reviewerId, revieweeId, opinionistId);
     }
 }

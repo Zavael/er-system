@@ -23,8 +23,16 @@ public class ErSystemBackendApplication {
     }
 
     @Bean
-    CommandLineRunner runner(PersonRepository er, ProjectRepository pr, AssignedStateRepository asr, ProjectReviewRepository prr, AssignmentsRepository ar) {
-        return new CmdLineRunner(er, pr, asr, prr, ar);
+    CommandLineRunner runner(
+            PersonRepository er,
+            ProjectRepository pr,
+            AssignedStateRepository asr,
+            ProjectReviewRepository prr,
+            AssignmentsRepository ar,
+            PersonReviewRepository persrr,
+            ProjectReviewOpinionRepository pror,
+            PersonReviewOpinionRepository persror) {
+        return new CmdLineRunner(er, pr, asr, prr, ar, persrr, pror, persror);
     }
 
     public static void main(String[] args) {

@@ -6,21 +6,21 @@ import java.util.Objects;
 /**
  * Created by abadinka on 20. 9. 2016.
  */
-public class ProjectReviewerId implements Serializable {
+public class ProjectPersonId implements Serializable {
     private long projectId;
-    private long reviewerId;
+    private long personId;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProjectReviewerId that = (ProjectReviewerId) o;
+        ProjectPersonId that = (ProjectPersonId) o;
         return projectId == that.projectId &&
-                reviewerId == that.reviewerId;
+                personId == that.personId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(projectId, reviewerId);
+        return Objects.hash(projectId, personId);
     }
 }

@@ -25,14 +25,24 @@ public class ProjectReviewOpinion {
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "projectId", insertable = false, updatable = false),
-            @JoinColumn(name = "reviewerId", insertable = false, updatable = false)
+            @JoinColumn(name = "projectId", insertable = false, updatable = false, nullable = false),
+            @JoinColumn(name = "reviewerId", insertable = false, updatable = false, nullable = false)
     })
     private ProjectReview projectReview;
 
     @ManyToOne
     @JoinColumn(name = "opinionistId", insertable = false, updatable = false)
     private Person opinionist;
+
+    public ProjectReviewOpinion() {
+    }
+
+    public ProjectReviewOpinion(long opinionistId, boolean agreement, long projectId, long reviewerId) {
+        this.opinionistId = opinionistId;
+        this.agreement = agreement;
+        this.projectId = projectId;
+        this.reviewerId = reviewerId;
+    }
 
     public long getOpinionistId() {
         return opinionistId;

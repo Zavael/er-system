@@ -6,6 +6,7 @@ import sk.badand.ersystem.views.PersonView;
 import sk.badand.ersystem.views.ProjectView;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,28 +21,28 @@ public class ProjectReview {
     private long projectId;
 
     @Id
-    private long personId;
+    private long reviewerId;
 
     @Column(nullable = false, length = 2048)
     private String review;
 
     @ManyToOne
-    @JoinColumn(name = "personId", insertable = false, updatable = false)
-    private Person reviewer;
-
-    @ManyToOne
     @JoinColumn(name = "projectId", insertable = false, updatable = false)
     private Project project;
 
+    @ManyToOne
+    @JoinColumn(name = "reviewerId", insertable = false, updatable = false)
+    private Person reviewer;
+
     @OneToMany(mappedBy = "projectReview")
-    private List<ProjectReviewOpinion> opinions;
+    private List<ProjectReviewOpinion> opinions = new ArrayList<>();;
 
     public ProjectReview() {
     }
 
-    public ProjectReview(long projectId, long personId, String review) {
+    public ProjectReview(long projectId, long reviewerId, String review) {
         this.projectId = projectId;
-        this.personId = personId;
+        this.reviewerId = reviewerId;
         this.review = review;
     }
 
@@ -81,5 +82,17 @@ public class ProjectReview {
         return opinions.stream()
                 .filter(opinion -> !opinion.isAgreement())
                 .collect(Collectors.toList());
+    }
+
+    public void addOpinion(ProjectReviewOpinion opinion){
+        this.opinions.add(opinion);
+    }
+
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public long getReviewerId() {
+        return reviewerId;
     }
 }
