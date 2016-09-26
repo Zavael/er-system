@@ -37,6 +37,14 @@ export class ProjectService {
 			.catch(this.errorUtil.simpleHandler);
 	}
 
+	public addReviewAgreement(){
+		
+	}
+
+	public addReviewDisgreement(){
+		
+	}
+
 	// private getMockProjects(): Observable<Project[]> {
 	// 	let projects: Project[] = [];
 	// 	for (var index = 0; index < 7; index++) {

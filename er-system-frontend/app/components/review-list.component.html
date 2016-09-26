@@ -9,12 +9,12 @@
             <div class="text">
                 {{review.review}}
             </div>
-            <div class="actions">
+            <div *ngIf="loginService.isLogged()"  class="actions">
                 <a>
-                    <i class="thumbs up large icon"></i> {{review.agreements ? review.agreements.length : 0}}
+                    <i class="thumbs up large icon" (click)="onUserAgree()"></i> {{review.agreements ? review.agreements.length : 0}}
                 </a>
                 <a>
-                    <i class="thumbs down large icon"></i> {{review.disagreements ? review.disagreements.length : 0}}
+                    <i class="thumbs down large icon" (click)="onUserDisagree()"></i> {{review.disagreements ? review.disagreements.length : 0}}
                 </a>
             </div>
         </div>
