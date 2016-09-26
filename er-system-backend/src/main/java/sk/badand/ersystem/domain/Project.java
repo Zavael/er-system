@@ -70,6 +70,9 @@ public class Project {
     }
 
     public List<AssignedPerson> getAssignedPersons() {
+        assignedPersons.sort((o1, o2) -> {
+            return -o1.getPosition().compareTo(o2.getPosition());
+        });
         return assignedPersons;
     }
 }

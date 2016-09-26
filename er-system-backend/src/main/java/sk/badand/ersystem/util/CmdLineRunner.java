@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Created by abadinka on 29. 6. 2016.
@@ -75,17 +74,19 @@ public class CmdLineRunner implements CommandLineRunner {
     }
 
     private List<String> persistStates() {
-        final List<String> states = Arrays.asList("ACTIVE,INACTIVE".split(","));
+        final List<String> states = Arrays.asList("ACTIVE,INACTIVE,REMOVED".split(","));
         states.forEach(name -> asr.save(new AssignmentState(name, name, "Description of " + name + " state.")));
         return states;
     }
 
     private void addAsignments(Project project, List<Person> persons) {
 
-        int max = new Randomizer().nextRandomInt(2, 8);
+        int max = new Randomizer().nextRandomInt(2, persons.size() - 1);
+        Collections.shuffle(persons);
         for (int i = 0; i < max; i++) {
+            final Long personId = persons.get(i).getId();
             ar.save(new AssignedPerson(
-                    persons.stream().findAny().get().getId(),
+                    personId,
                     project.getId(),
                     asr.getOne(1L), true,
                     i < 1 ? "Manager" : i < 3 ? "Analist" : "Developer"));
@@ -94,10 +95,10 @@ public class CmdLineRunner implements CommandLineRunner {
 
     private void addReviews(Project project, List<Person> persons) {
 
-        int max = new Randomizer().nextRandomInt(2, 8);
+        int max = new Randomizer().nextRandomInt(2, persons.size() - 1);
+        Collections.shuffle(persons);
         for (int i = 0; i < max; i++) {
-            Collections.shuffle(persons);
-            final Long revieweeId = persons.get(0).getId();
+            final Long revieweeId = persons.get(i).getId();
             final ProjectReview projectReview = prr.save(new ProjectReview(project.getId(), revieweeId, stringGenerator.generateParagraph(30)));
             addOpinions(projectReview, persons, project.getId(), revieweeId);
         }
@@ -105,11 +106,12 @@ public class CmdLineRunner implements CommandLineRunner {
 
     private void addPersReviews(Project project, List<Person> persons) {
 
-        int max = new Randomizer().nextRandomInt(2, 8);
+        int max = new Randomizer().nextRandomInt(2, persons.size() - 1);
+        Collections.shuffle(persons);
         for (int i = 0; i < max; i++) {
             Collections.shuffle(persons);
-            final Long reviewerId = persons.get(0).getId();
-            final Long revieweeId = persons.get(persons.size()-1).getId();
+            final Long reviewerId = persons.get(i).getId();
+            final Long revieweeId = persons.get(persons.size() - 1 - i).getId();
             final PersonReview personReview = persrr.save(new PersonReview(project.getId(), reviewerId, revieweeId, stringGenerator.generateParagraph(30)));
             addOpinions(personReview, persons, revieweeId, reviewerId, project.getId());
         }
@@ -117,20 +119,20 @@ public class CmdLineRunner implements CommandLineRunner {
 
     private void addOpinions(ProjectReview projectReview, List<Person> persons, long projectId, long reviewerId) {
 
-        int max = new Randomizer().nextRandomInt(2, 8);
+        int max = new Randomizer().nextRandomInt(2, persons.size() - 1);
+        Collections.shuffle(persons);
         for (int i = 0; i < max; i++) {
-            Collections.shuffle(persons);
-            final Long personId = persons.get(0).getId();
+            final Long personId = persons.get(i).getId();
             pror.save(new ProjectReviewOpinion(personId, i % 2 == 0, projectId, reviewerId));
         }
     }
 
     private void addOpinions(PersonReview personReview, List<Person> persons, long revieweeId, long reviewerId, long projectId) {
 
-        int max = new Randomizer().nextRandomInt(2, 8);
+        int max = new Randomizer().nextRandomInt(2, persons.size() - 1);
+        Collections.shuffle(persons);
         for (int i = 0; i < max; i++) {
-            Collections.shuffle(persons);
-            final Long personId = persons.get(0).getId();
+            final Long personId = persons.get(i).getId();
             persror.save(new PersonReviewOpinion(projectId, reviewerId, revieweeId, personId, i % 2 == 0));
         }
     }
