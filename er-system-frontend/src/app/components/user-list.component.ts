@@ -3,7 +3,7 @@ import { User } from '../models';
 
 @Component({
     selector: 'user-list',
-    templateUrl: 'app/components/user-list.component.html'
+    templateUrl: './user-list.component.html'
 })
 export class UserListComponent implements OnInit {
     @Input()

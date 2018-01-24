@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Headers} from '@angular/http'
+import { Headers } from '@angular/http'
 
 @Injectable()
 export class HeadersService {
@@ -14,11 +14,11 @@ export class HeadersService {
         return { headers: headers };
     }
 
-    get publicUrl():string{
-        return "http://localhost:8080/";
+    get publicUrl(): string {
+        return "http://localhost:4200/";
     }
 
-    get apiUrl():string{
+    get apiUrl(): string {
         return "http://localhost:8080/api/";
     }
 }

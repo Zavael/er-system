@@ -1,6 +1,4 @@
-// - Routes instead of RouteConfig
-// - RouterModule instead of provideRoutes
-import { ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
 	UserListComponent,
@@ -36,8 +34,11 @@ const routes: Routes = [
 	{ path: '**', pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
-// - Updated Export
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
 
 export const appRoutingProviders: any[] = [
 	UserListComponent,

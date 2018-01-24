@@ -3,7 +3,7 @@ import { Project, Review } from '../models';
 
 @Component({
     selector: 'project-detail',
-    templateUrl: 'app/components/project-detail.component.html'
+    templateUrl: './project-detail.component.html'
 })
 export class ProjectDetailComponent implements OnInit {
     @Input()

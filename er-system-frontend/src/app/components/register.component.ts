@@ -4,7 +4,7 @@ import { RegisterService } from '../services/register.service';
 
 @Component({
   selector: 'register',
-  templateUrl: 'app/components/register.component.html',
+  templateUrl: './register.component.html',
   providers: [RegisterService]
 })
 export class RegisterComponent {

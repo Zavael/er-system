@@ -4,7 +4,7 @@ import { LoginService, ProjectService } from '../services';
 
 @Component({
     selector: 'review-add',
-    templateUrl: './app/components/review-add.component.html'
+    templateUrl: './review-add.component.html'
 })
 
 export class ReviewAddComponent implements OnInit, OnDestroy {

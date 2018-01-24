@@ -3,7 +3,7 @@ import { LoginService } from '../services';
 
 @Component({
     selector: 'nav-bar',
-    templateUrl: 'app/components/nav-bar.component.html'
+    templateUrl: './nav-bar.component.html'
 })
 export class NavBarComponent {
     /**
