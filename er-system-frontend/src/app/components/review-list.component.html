@@ -2,19 +2,19 @@
     <div *ngFor="let review of reviews" class="comment">
         <i class="large user icon avatar"></i>
         <div class="content">
-            <a class="author">{{review.author.userName}}</a>
+            <a class="author">{{review.reviewer.userName}}</a>
             <div class="metadata">
                 <div class="date">2 days ago</div>
             </div>
             <div class="text">
-                {{review.content}}
+                {{review.review}}
             </div>
-            <div class="actions">
+            <div *ngIf="loginService.isLogged()"  class="actions">
                 <a>
-                    <i class="thumbs up large icon"></i> {{review.agreements ? review.agreements.length : 0}}
+                    <i class="thumbs up large icon" (click)="onUserAgree()"></i> {{review.agreements ? review.agreements.length : 0}}
                 </a>
                 <a>
-                    <i class="thumbs down large icon"></i> {{review.disagreements ? review.disagreements.length : 0}}
+                    <i class="thumbs down large icon" (click)="onUserDisagree()"></i> {{review.disagreements ? review.disagreements.length : 0}}
                 </a>
             </div>
         </div>

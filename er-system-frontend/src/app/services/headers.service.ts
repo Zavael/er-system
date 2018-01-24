@@ -9,6 +9,7 @@ export class HeadersService {
     getJsonHeaders(token?: string) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
         if (token)
             headers.append('Authorization', 'Bearer ' + token)
         return { headers: headers };

@@ -1,23 +1,29 @@
 import {Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import { User } from '../models/user';
+import { Person } from '../models';
+import { HeadersService } from '../services';
+import { ErrorUtil } from '../utils';
 
 @Injectable()
 export class RegisterService {
-    /**
-     *
-     */
-    constructor(private http: Http) { }
+
+    private errorUtil: ErrorUtil = new ErrorUtil();
+
+    constructor(private http: Http, private headersService: HeadersService) { }
 
     /**
      * sendUser
      */
-    public sendUser(user: User) {
+    public sendPerson(person: Person) {
         // let url = "http://localhost:8080/user/register";
         // let header = new Headers({ 'Content-Type': 'application/json' });
 
         // return this.http.post(url, JSON.stringify(user), { headers: header });
-		return Observable.create((subscriber) => subscriber.next(user));
+        console.debug('sendUser: ' + person);
+        return this.http
+            .get(this.headersService.publicUrl + '/register', this.headersService.getJsonHeaders())
+            .map(res => res.json)
+            .catch(this.errorUtil.simpleHandler);
     }
 }

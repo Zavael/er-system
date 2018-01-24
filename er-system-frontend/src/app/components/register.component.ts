@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { User } from '../models/user';
+import { Person } from '../models';
 import { RegisterService } from '../services/register.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { RegisterService } from '../services/register.service';
   providers: [RegisterService]
 })
 export class RegisterComponent {
-  newUser: User = new User();
+  newPerson: Person = new Person();
   registered: boolean = false;
 
   /**
@@ -19,11 +19,10 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    this.registerService.sendUser(this.newUser).subscribe(
+    this.registerService.sendPerson(this.newPerson).subscribe(
       data => {
-        console.debug('register success: ' + data);
         this.registered = true;
-        this.newUser = new User();
+        this.newPerson = new Person();
       },
       error => console.log(error)
     );

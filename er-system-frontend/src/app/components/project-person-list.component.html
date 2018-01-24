@@ -1,0 +1,9 @@
+<div class="ui horizontal list">
+  <div *ngFor="let assignedPerson of assignedPersons" class="item">
+    <i class="large user icon"></i>
+    <div class="content">
+      {{assignedPerson.position}}
+      <div class="ui sub header">{{assignedPerson.person.userName | lowercase}}</div>
+    </div>
+  </div>
+</div>

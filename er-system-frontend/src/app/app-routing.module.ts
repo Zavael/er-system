@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
-	UserListComponent,
+	ProjectPersonListComponent,
 	ProjectListComponent,
 	ProjectDetailComponent,
 	LoginComponent,
@@ -15,7 +15,7 @@ import {
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: 'login',
+		redirectTo: 'home',
 		pathMatch: 'full'
 	},
 	{
@@ -24,10 +24,11 @@ const routes: Routes = [
 		// children: [
 		// 	{
 		// 		path: ':id',
-		// 		component: PersonListComponent
+		// 		component: ProjectDetailComponent
 		// 	}
 		// ]
 	},
+	{ path: 'projects/:id', component: ProjectDetailComponent },
 	{ path: 'home', component: HomeComponent },
 	{ path: 'login', component: LoginComponent },
 	{ path: 'register', component: RegisterComponent },
@@ -41,7 +42,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const appRoutingProviders: any[] = [
-	UserListComponent,
+	ProjectPersonListComponent,
 	ProjectListComponent, ProjectDetailComponent,
 	LoginComponent,
 	RegisterComponent,

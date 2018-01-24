@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import sk.badand.ersystem.service.UserService;
+import sk.badand.ersystem.service.PersonService;
 
 import javax.servlet.ServletException;
 import java.time.Instant;
@@ -21,16 +21,16 @@ import java.util.Map;
 @RequestMapping("/login")
 public class LoginController {
 
-    private static final int SECONDS_TO_EXPIRE_TOKEN = 30 * 60;
-    private final UserService userService;
+    private static final int SECONDS_TO_EXPIRE_TOKEN = 1 * 60;
+    private final PersonService personService;
 
     @Autowired
-    public LoginController(UserService userService) {
-        this.userService = userService;
+    public LoginController(PersonService personService) {
+        this.personService = personService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String loginUser(@RequestBody Map<String, String> credentials) throws ServletException {
+    public String loginPerson(@RequestBody Map<String, String> credentials) throws ServletException {
         final String userName = credentials.get("userName");
         final String password = credentials.get("password");
 
@@ -38,10 +38,9 @@ public class LoginController {
             throw new ServletException("Missing credentials");
         }
 
-        this.userService.findByUserName(userName)
-                .filter(user -> password.equals(user.getPassword()))
-                .orElseThrow(() -> new ServletException("Invalid login. Please check your userName and password."));
-
+        if (this.personService.findByUserName(userName).stream().noneMatch(person -> password.equals(person.getPassword()))) {
+            throw new ServletException("Invalid login. Please check your userName and password.");
+        }
 
         final Instant issuedAt = Instant.now();
         return Jwts.builder()
