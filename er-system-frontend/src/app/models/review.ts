@@ -1,9 +1,9 @@
-import { User } from '../models';
+import { Person } from '../models';
 
 /**
  * Review
  */
 export class Review {
-    public author: User;
+    public author: Person;
     public content: string;
 }

@@ -4,7 +4,7 @@ import { Person } from '../models';
 
 @Component({
     selector: 'login',
-    templateUrl: 'app/components/login.component.html',
+    templateUrl: './login.component.html',
     providers: [PersonService]
 })
 export class LoginComponent implements OnInit {

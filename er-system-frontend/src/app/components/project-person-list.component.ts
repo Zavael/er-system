@@ -3,7 +3,7 @@ import { AssignedPerson } from '../models';
 
 @Component({
     selector: 'project-person-list',
-    templateUrl: 'app/components/project-person-list.component.html'
+    templateUrl: './project-person-list.component.html'
 })
 export class ProjectPersonListComponent implements OnInit {
     @Input()
